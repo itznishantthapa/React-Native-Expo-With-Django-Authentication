@@ -11,9 +11,30 @@ const api = axios.create({
 export const postData = async (endpoint, data) => {
   try {
     const response = await api.post(`${endpoint}/`, data);
-    return { success: true, data: response.data.message};
+    return { success: true, data: response.data.msg};
   } catch (error) {
-    return {success: false, data: error.response?.data?.message || "Something went wrong",
-    };
+    return {success: false, data: error.response?.data?.msg || "Something went wrong" };
+  }
+};
+
+//export post function for profile picture
+export const postProfilePicture = async (endpoint, uri) => {
+  
+  const formData = new FormData();
+  formData.append('profile_picture', {
+      uri: uri,
+      type: 'image/jpeg',
+      name: 'profile_picture.jpg',
+  });
+
+  try {
+    const response = await api.post(`${endpoint}/`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    return { success: true, data: response.data.msg };
+  } catch (error) {
+    return { success: false, data: error.response?.data?.msg || "Something went wrong" };
   }
 };
