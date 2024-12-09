@@ -14,14 +14,6 @@ const SignUp = ({ navigation }) => {
     }
 
     const handleSignUp = async () => {
-        // Call the postData function from service.js and pass the data object along with endpoint.
-        // const response = await postData('signup', data);
-        // if (response.success) {
-        //     Alert.alert('Success', response.data);
-        //     navigation.navigate('Home');
-        // } else {
-        //     Alert.alert('Error', response.data);
-        // }
 
         navigation.navigate('Home');
     };
